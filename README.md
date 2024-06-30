@@ -3,9 +3,9 @@
 [![PoGo WiFi ADB GPS Track](https://img.youtube.com/vi/VIx5rJArMv0/0.jpg)](https://www.youtube.com/watch?v=VIx5rJArMv0 "PoGo WiFi ADB GPS Track")
 
 
-Use with mock location from Polygon
+Use with mock location from Polygon. Getting to know your current location wirelessly via a PC is now a breeze especially when you have the "Platinum Tier" and "Planet Earth" as a Geofence turned on.
 
-──────────────────────────
+───────────
 
 ### **Overview**
 
@@ -38,6 +38,60 @@ Here is a breakdown of the functionality:
 
 11. If the script is interrupted with a KeyboardInterrupt (Ctrl+C), it calls the signal handler to clean up and exit.
 
+───────────
+
+### **Prerequisites**
+
+
+• Python 3.x                                                                                                                                                                      
+• Linux-based operating system (preferably Parrot Security OS)                                                                                                   
+
+• Sudo privileges for certain operations
+
+• ADB, WiFi or via tethering
+
+───────────
+
+### **Usage**
+
+Here are the steps to pair and connect to a device using ADB over WiFi:
+
+1. On the Android device:
+   - Enable Developer options if not already enabled
+   - Go to Developer options and enable "Wireless debugging"
+   - Tap on "Wireless debugging" to open the settings
+   - Tap "Pair device with pairing code"
+   - Note the IP address, port number, and pairing code shown
+
+2. On your computer:
+   - Open a command prompt/terminal 
+   - Run the pairing command:
+     ```
+     adb pair <ip-address>:<port>
+     ```
+   - Enter the pairing code when prompted
+
+3. After successful pairing:
+   - On the Android device, note the IP address and port shown under "IP address & port"
+   - On your computer, run:
+     ```
+     adb connect <ip-address>:<port>
+     ```
+
+4. You should now be connected wirelessly. Verify with:
+   ```
+   adb devices
+   ```
+
+Key things to note:
+- The device and computer must be on the same WiFi network
+- The pairing port is different from the connection port
+- You may need to repeat the pairing process after device reboots
+- Use "adb disconnect" when done to close the connection
+
+This allows you to use ADB wirelessly without needing a USB cable connection. Let me know if you need any clarification on the steps!
+
+───────────
 
 ### **Authors**
 
