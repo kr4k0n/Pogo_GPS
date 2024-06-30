@@ -5,18 +5,16 @@ import subprocess, time, os, sys, re, signal
 
 try:
     import folium
-    import selenium
-    import webdriver_manager
+    from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from webdriver_manager.chrome import ChromeDriverManager
 except ImportError:
     os.system('pip3 install folium selenium webdriver-manager')
 
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
-
-# Function to get GPS data using ADB
 def get_gps_data():
     try:
         result = subprocess.run(["adb", "shell", "dumpsys", "location"], capture_output=True, text=True)
@@ -28,18 +26,16 @@ def get_gps_data():
                 return lat, lon
     except Exception as e:
         print(f"Error getting GPS data: {e}")
-        return None, None
+    return None, None
 
-# Function to create and update the map
-def update_map(lat, lon):
+def update_map(lat, lon, zoom):
     if lat is None or lon is None:
         print("Invalid GPS data. Map not updated.")
         return
-    m = folium.Map(location=[lat, lon], zoom_start=15)
+    m = folium.Map(location=[lat, lon], zoom_start=zoom)
     folium.Marker([lat, lon], popup="Your Location").add_to(m)
     m.save("gps_map.html")
 
-# Function to check if Chromium is installed and install if not
 def ensure_chromium():
     chromium_path = "/usr/bin/chromium"
     if not os.path.exists(chromium_path):
@@ -58,7 +54,6 @@ def ensure_chromium():
             sys.exit(1)
     return chromium_path
 
-# Function to handle Ctrl+C
 def signal_handler(sig, frame):
     print("\nCtrl+C pressed. Cleaning up...")
     try:
@@ -72,33 +67,49 @@ def signal_handler(sig, frame):
     os.system('clear')
     sys.exit(0)
 
-# Register the signal handler
 signal.signal(signal.SIGINT, signal_handler)
 
-# Ensure Chromium is installed
 chromium_path = ensure_chromium()
 
-# Setup Selenium WebDriver
 chrome_options = Options()
 chrome_options.binary_location = chromium_path
-chrome_options.add_experimental_option("detach", True)  # Keeps the browser open
+chrome_options.add_experimental_option("detach", True)
 
 driver = webdriver.Chrome(options=chrome_options)
 
-# Initialize map with default location
-default_lat, default_lon = 0, 0  # You can change this to a default location
-update_map(default_lat, default_lon)
+default_lat, default_lon = 0, 0
+default_zoom = 15
+current_zoom = default_zoom
+
+update_map(default_lat, default_lon, current_zoom)
 driver.get("file://" + os.path.abspath("gps_map.html"))
 
-# Main loop to update GPS data and refresh the map
 try:
     while True:
         lat, lon = get_gps_data()
         if lat is not None and lon is not None:
-            update_map(lat, lon)
+            # Wait for the map to be loaded
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "folium-map"))
+            )
+            WebDriverWait(driver, 10).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, "leaflet-control-zoom"))
+            )
+            
+            # Update the map with the current zoom level
+            update_map(lat, lon, current_zoom)
             driver.refresh()
+            time.sleep(1)  # Add a short delay
+            
+            # Wait for the map to be reloaded
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "folium-map"))
+            )
+            WebDriverWait(driver, 10).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, "leaflet-control-zoom"))
+            )
         else:
             print("Waiting for valid GPS data...")
-        time.sleep(3)  # Update every 3 seconds
+        time.sleep(3)
 except KeyboardInterrupt:
     signal_handler(signal.SIGINT, None)
