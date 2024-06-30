@@ -90,7 +90,7 @@ Key things to note:
 - You may need to repeat the pairing process after device reboots
 - Use "adb disconnect" when done to close the connection
 
-This allows you to use ADB wirelessly without needing a USB cable connection. Let me know if you need any clarification on the steps!
+This allows you to use ADB wirelessly without needing a USB cable connection.
 
 ───────────
 
