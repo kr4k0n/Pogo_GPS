@@ -1,6 +1,7 @@
 ## **PoGo GPS backend tool**
 
 [![PoGo WiFi ADB GPS Track](https://img.youtube.com/vi/VIx5rJArMv0/0.jpg)](https://www.youtube.com/watch?v=VIx5rJArMv0 "PoGo WiFi ADB GPS Track")
+< Click to watch PoC video >
 
 
 Use with mock location from Polygon. Getting to know your current location wirelessly via a PC is now a breeze especially when you have the "Platinum Tier" and "Planet Earth" as a Geofence turned on.
