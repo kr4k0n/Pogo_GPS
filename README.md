@@ -1,4 +1,3 @@
-![image](https://github.com/kr4k0n/Stingray/assets/153607066/8ad09c76-c076-4915-9e5f-1b1d1b1d8430)
 ## **PoGo GPS backend tool**
 
 Use with mock location from Polygon
