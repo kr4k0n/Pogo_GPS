@@ -92,7 +92,16 @@ Key things to note:
 
 This allows you to use ADB wirelessly without needing a USB cable connection.
 
-───────────
+──────────────────────
+
+### **GUI version**
+
+Getpos_gui.py is slow and a little unresponsive as compared to getpos.py
+
+![image](https://github.com/kr4k0n/Pogo_GPS/assets/153607066/378a9504-d9ba-469f-88f4-ece9705b4278)
+
+
+──────────────────────
 
 ### **Authors**
 
