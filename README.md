@@ -97,6 +97,12 @@ This allows you to use ADB wirelessly without needing a USB cable connection. Le
 ### **Authors**
 
 
-• Phr34kz                                                                                                                                                                                    
+• Phr34kz  
+
+───────────
+
+### **Credits**
+
+Angelina Tsuboi - https://payload-wizard.vercel.app/ (https://github.com/ANG13T)
 
 ──────────────────────────
