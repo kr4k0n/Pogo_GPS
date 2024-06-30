@@ -45,7 +45,7 @@ Here is a breakdown of the functionality:
 
 • Python 3.x
 
-• Linux-based operating system (preferably Parrot Security OS)                                                                                                   
+• Linux-based operating system (or Windows WHL)                                                                                                   
 
 • Sudo privileges for certain operations
 
