@@ -43,7 +43,8 @@ Here is a breakdown of the functionality:
 ### **Prerequisites**
 
 
-• Python 3.x                                                                                                                                                                      
+• Python 3.x
+
 • Linux-based operating system (preferably Parrot Security OS)                                                                                                   
 
 • Sudo privileges for certain operations
