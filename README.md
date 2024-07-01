@@ -5,7 +5,7 @@
 < Click to watch PoC video >
 
 
-Use with mock location from Polygon. Getting to know your current location wirelessly via a PC is now a breeze especially when you have the "Platinum Tier" and "Planet Earth" as a Geofence turned on.
+Use with mock from Poly. Getting to know your current location wirelessly via a PC is now a breeze especially when you have the "Platinum Tier" and "Planet Earth" as a Geofence turned on.
 
 ───────────
 
