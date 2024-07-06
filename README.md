@@ -114,7 +114,7 @@ Getpos_gui.py is slow and a little unresponsive as compared to getpos.py
 
 ### **Credits**
 
-Angelina Tsuboi - Payload Interpreter cause I'm too lazy to type a damn readme https://payload-wizard.vercel.app/ ( https://github.com/ANG13T )
+Angelina Tsuboi - Payload Interpreter cause I'm too lazy to type a readme https://payload-wizard.vercel.app/ ( https://github.com/ANG13T )
 Curious? Watch her on Youtube https://youtu.be/U1-pOPFKcXo?si=nhZoMPZOQ3q-Y2Bc
 
 ──────────────────────────
